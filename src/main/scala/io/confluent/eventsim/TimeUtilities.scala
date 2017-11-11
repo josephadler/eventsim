@@ -3,7 +3,7 @@ package io.confluent.eventsim
 import java.time.temporal.{ChronoField, ChronoUnit}
 import java.time.{DayOfWeek, Duration, LocalDate, LocalDateTime}
 
-import de.jollyday.HolidayManager
+import de.jollyday.{HolidayCalendar,HolidayManager}
 import io.confluent.eventsim.Constants._
 import io.confluent.eventsim.config.ConfigFromFile
 import org.apache.commons.math3.random.MersenneTwister
@@ -13,7 +13,7 @@ object TimeUtilities {
   // def dateTimeToLocalDate(dt: Instant): LocalDate = LocalDate.from(Instant.ofEpochMilli(dt.getMillis()))
 
   // first implementation: US only
-  val holidays = HolidayManager.getInstance()
+  val holidays = HolidayManager.getInstance(HolidayCalendar.UNITED_STATES)
 
   def isHoliday(ld: LocalDate): Boolean = holidays.isHoliday(ld)
 
